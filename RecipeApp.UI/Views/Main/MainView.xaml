@@ -1,0 +1,79 @@
+﻿<Window x:Class="RecipeApp.UI.Views.Main.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        DataContext="{Binding Path=MainViewModel, Source={StaticResource ViewModelLocator}}"
+        xmlns:local="clr-namespace:RecipeApp.UI.Views.Main"
+        mc:Ignorable="d"
+        Title="MainView" Height="400" Width="1000" Background="White">
+    <Window.Resources>
+        <Style x:Key="MenuButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource MenuButton}">
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding MenuOpened}" Value="true">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MenuBar" TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="5,10"/>
+            <Setter Property="Width" Value="55"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding MenuOpened}" Value="true">
+                    <Setter Property="Width" Value="140"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <!--<RowDefinition/>-->
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!-- Title bar -->
+        <!--<StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Background="White" Height="55" Margin="55,0,0,0">
+            <TextBlock Text="{Binding SelectedMenuItem, FallbackValue=None Selected}"/>
+        </StackPanel>-->
+        <!-- Menu bar -->
+        <StackPanel Style="{StaticResource MenuBar}" ZIndex="1" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Background="#B2FFFFFF"  HorizontalAlignment="Left" Margin="0">
+
+            <Button x:Name="ButtonHamburger" Content="{StaticResource Hamburger-Icon}" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Left" Command="{Binding OpenMenuCommand}"/>
+
+            <StackPanel Orientation="Horizontal" >
+                <Button x:Name="ButtonHome" Content="{StaticResource Home-Icon}" Style="{StaticResource MenuButtonStyle}" Command="{Binding NavigateToPage}" CommandParameter="0"/>
+                <Label Content="Home"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="ButtonRecipeSearch" Content="{StaticResource RecipeSearch-Icon}" Style="{StaticResource MenuButtonStyle}" Command="{Binding NavigateToPage}" CommandParameter="1"/>
+                <Label Content="Search"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="ButtonRecipe" Content="{StaticResource Recipe-Icon}"  Style="{StaticResource MenuButtonStyle}" Command="{Binding NavigateToPage}" CommandParameter="2"/>
+                <Label Content="Recipes"/>
+            </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="ButtonRecipePlanner" Content="{StaticResource RecipePlanner-Icon}" Style="{StaticResource MenuButtonStyle}" Command="{Binding NavigateToPage}" CommandParameter="3"/>
+                    <Label Content="Planner"/>
+                </StackPanel>
+        </StackPanel>
+
+        <!-- Main content -->
+        <DockPanel Grid.Column="0" Grid.Row="1">
+            <Frame x:Name="MainContent" DockPanel.Dock="Top" NavigationUIVisibility="Hidden" Source="/Views/Dashboard/DashboardView.xaml" Padding="0" Margin="55,0,0,0"/>
+        </DockPanel>
+    </Grid>
+</Window>

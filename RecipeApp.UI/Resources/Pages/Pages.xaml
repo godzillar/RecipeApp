@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:dashboard="clr-namespace:RecipeApp.UI.ViewModels.Dashboard"
+                    xmlns:dashboardView="clr-namespace:RecipeApp.UI.Views.Dashboard">
+
+    <DataTemplate x:Key="DashboardView" DataType="{x:Type dashboard:DashboardViewModel}">
+        <dashboardView:DashboardView/>
+    </DataTemplate>
+
+        <!--<DataTemplate DataType="{x:Type local:DepartmentViewModel}">
+
+            <local:DepartmentView/>
+
+        </DataTemplate>-->
+
+</ResourceDictionary>

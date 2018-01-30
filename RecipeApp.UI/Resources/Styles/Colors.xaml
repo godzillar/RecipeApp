@@ -1,0 +1,5 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:drawing="clr-namespace:System.Drawing;assembly=System.Drawing">
+    <SolidColorBrush x:Key="MenuIconColor" Color="#FFC3C3C3"></SolidColorBrush>
+</ResourceDictionary>

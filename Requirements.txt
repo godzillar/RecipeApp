@@ -1,0 +1,50 @@
+The following requirements apply to the RecipeApp application:
+
+- The application shall be able to import (eating) recipes from an internet web page (source must be named)
+- The application shall have a week planner that can be used to list the recipes that will be made.
+
+- A user must be able to rate a recipe
+- A user must be able to add remarks to a recipe
+- A user must be able to add photos to the recipe.
+- The user must be able to add tags to a recipe for search purposes
+
+- The application must be able to make suggestions based on tags and date of last making a recipe
+
+- The application must be able to run on either desktop, in a browser or inside a mobile device (xamarin, cordova, etc..)
+
+Dashboard:
+- List of latest added/imported recipes
+- Top 5 best rated recipes
+- Recently liked recipes
+- Recently disliked recipes
+- Current week/day recipe
+- Links to Seach, Planner
+
+SearchRecipeView:
+- Search recipes based on:
+	- Name or part of name
+	- Ingredients
+	- Tags
+	- Rating
+	- Number of times eaten
+	- Recipe source
+- Add recipe to day of recipe planner
+
+RecipePlanner:
+- A week planner showing recipes planned per week
+- Link to the day recipe
+- Plan 
+
+RecipeView:
+- Shows the current selected recipe
+- Shows the ingredients
+- Shows the preperation time
+
+RecipeRemarksView:
+- Remarks on the recipe
+- Suggestions/alterations to recipe
+
+RecipeManagementView
+- List of all recipes in the application
+- Manage the recipes (add, delete, edit)
+- Add recipe to planner day
