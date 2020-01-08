@@ -32,6 +32,8 @@ namespace RecipeApp.UI.WPF.Configurations
             builder.Register(c => new HttpClientService(c.Resolve<IHttpClientAccessor>())).As<IHttpClientService>().SingleInstance();
 
             builder.RegisterType<MainView>().AsSelf();
+
+            // Register all pages inside this assembly
             builder.RegisterAssemblyTypes(typeof(MainView).Assembly).Where(t => t.IsSubclassOf(typeof(Page)));
         }
     }
