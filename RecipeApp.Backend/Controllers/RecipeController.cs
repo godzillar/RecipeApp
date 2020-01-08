@@ -29,7 +29,6 @@ namespace RecipeApp.Backend.Controllers
             _mapper = mapper;
         }
 
-        // GET: api/Recipe
         [HttpGet]
         public async Task<IActionResult> GetRecipesAsync([FromQuery]GetRecipesQueryFilters filters, CancellationToken cancellationToken)
         {
@@ -42,15 +41,7 @@ namespace RecipeApp.Backend.Controllers
 
             return Ok(recipeViewModels);
         }
-
-        // GET: api/Recipe/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
         
-        // POST: api/Recipe
         [HttpPost]
         public async Task<IActionResult> AddRecipesAsync([FromBody]CreateRecipeModel recipe, CancellationToken cancellationToken)
         {

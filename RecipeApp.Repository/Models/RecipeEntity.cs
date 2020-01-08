@@ -18,6 +18,7 @@ namespace RecipeApp.Repository.Models
 
         public string Remarks { get; set; }
 
+        [Range(0,10)]
         public int Rating { get; set; }
 
         public string Source { get; set; }

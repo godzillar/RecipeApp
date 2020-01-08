@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using RecipeApp.Backend.Configurations;
 using RecipeApp.Repository.Configurations;
 using RecipeApp.Repository.Database;
@@ -18,6 +11,7 @@ using RecipeApp.Repository.Respositories;
 using RecipeApp.Service.Dispatchers;
 using RecipeApp.Service.Interfaces.Dispatchers;
 using RecipeApp.Service;
+using RecipeApp.Repository;
 
 namespace RecipeApp.Backend
 {
@@ -53,22 +47,27 @@ namespace RecipeApp.Backend
             services.AddScoped<IRecipeRepository, RecipeRepository>();
 
             // Add database context
-            var connectionString = Configuration.GetConnectionString("RecipeDbConnectionString");
-            services.AddDbContext<RecipeListDbContext>(options => options.UseSqlServer(connectionString));
+            var connectionString = Configuration.GetConnectionString("RecipeSqLiteConnectionString");
+            services.UseSqLiteConnection(connectionString);
             services.AddScoped<IRecipeListDbContext>(provider => provider.GetService<RecipeListDbContext>());
 
-            services.AddMvc();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.EnvironmentName == Microsoft.Extensions.Hosting.Environments.Development)
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
